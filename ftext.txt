@@ -1,1 +1,2 @@
+This text from feature branch textfile from Desktop
 This text from feature branch textfile 
