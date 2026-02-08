@@ -1,5 +1,5 @@
 <html>
 <body>
-<h2>This is first web app deplolyed successfully.</h2>
+<h2>This is first web app deplolyed successfully trough freestyle</h2>
 </body>
 </html>
