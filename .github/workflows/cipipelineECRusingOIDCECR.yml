@@ -59,7 +59,7 @@ jobs:
           git config user.email "vaibha2098@gmail.com"
           sed -i "s|^  tag: .*|  tag: sha-${GITHUB_SHA::7}|" index.yaml
           git diff --quiet || (
-            git add index.jsp
+            git add index.yaml
             git commit -m "Update image tag to sha-${GITHUB_SHA::7}"
             git push origin main
           )
