@@ -25,7 +25,7 @@ jobs:
       - name: Configure AWS credentials via OIDC
         uses: aws-actions/configure-aws-credentials@v4
         with:
-          role-to-assume: arn:aws:iam::180789647333:role/github-actions-oidc-role-ui3
+          role-to-assume: arn:aws:iam::470514032230:role/GithubAction-ECR
           aws-region: ${{ env.AWS_REGION }}
 
       - name: Login to Amazon ECR
@@ -39,16 +39,13 @@ jobs:
           IMAGE_BASE="${{ steps.login-ecr.outputs.registry }}/${{ env.ECR_REPOSITORY }}"
           echo "IMAGE_BASE=$IMAGE_BASE" >> $GITHUB_ENV
           echo "TAGS=latest $SHA_TAG" >> $GITHUB_ENV
-          echo "Using tags: latest and $SHA_TAG"
-          echo "latest = convenience tag for testing"
-          echo "$SHA_TAG = immutable tag used in Helm values"
 
       - name: Build and push Docker images
         run: |
           for tag in $TAGS; do
             IMAGE_URI="$IMAGE_BASE:$tag"
             echo "Building and pushing $IMAGE_URI"
-            docker build -t $IMAGE_URI src/ui
+            docker build -t $IMAGE_URI .
             docker push $IMAGE_URI
           done
 
